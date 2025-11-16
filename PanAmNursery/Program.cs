@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PanAmNursery.Models;
+using PanAmNursery.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
