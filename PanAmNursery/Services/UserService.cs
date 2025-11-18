@@ -14,7 +14,7 @@ namespace PanAmNursery.Services
             _repository = repository;
         }
 
-        public async Task<UserDto> CreateUser(UserCreateDto dto)
+        public async Task<UserDto> CreateUserAsync(UserCreateDto dto)
         {
             User user = new User
             {
@@ -22,8 +22,8 @@ namespace PanAmNursery.Services
                 CreationDate = DateTime.UtcNow
             };
 
-            await _repository.Add(user);
-            await _repository.SaveChanges();
+            await _repository.AddAsync(user);
+            await _repository.SaveChangesAsync();
 
             return new UserDto
             {
@@ -33,9 +33,9 @@ namespace PanAmNursery.Services
             };
         }
 
-        public async Task<UserDto?> GetUser(int id)
+        public async Task<UserDto?> GetUserAsync(int id)
         {
-            var user = await _repository.GetById(id);
+            var user = await _repository.GetByIdAsync(id);
             if (user == null) return null;
 
             return new UserDto

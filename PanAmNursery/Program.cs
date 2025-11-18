@@ -1,16 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using PanAmNursery.Data;
+using PanAmNursery.Repositories;
+using PanAmNursery.Repositories.Interfaces;
+using PanAmNursery.Services;
+using PanAmNursery.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"[DEBUG] Connection string found? {connectionString != null}");
 // Add services to the container.
 
-builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<DatabaseContext>(options => { options.UseSqlServer(connectionString); });
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 
