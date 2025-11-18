@@ -4,7 +4,7 @@ namespace PanAmNursery.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<UserDto> CreateUserAsync(UserCreateDto dto);
-        Task<UserDto?> GetUserAsync(int id);
+        Task<UserDto> CreateUser(UserCreateDto dto);
+        Task<UserDto?> GetUser(int id);
     }
 }

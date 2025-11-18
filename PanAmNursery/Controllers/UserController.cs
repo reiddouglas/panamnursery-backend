@@ -22,7 +22,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> CreateUser([FromBody] UserCreateDto dto)
     {
         _logger.LogInformation("POST /api/users called with dto={DTO}", JsonSerializer.Serialize(dto));
-        var created = await _service.CreateUserAsync(dto);
+        var created = await _service.CreateUser(dto);
         return CreatedAtAction(nameof(GetUser), new { id = created.Id }, created);
     }
 
@@ -30,7 +30,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> GetUser(int id)
     {
         _logger.LogInformation("GET /api/users/{Id} called", id);
-        var user = await _service.GetUserAsync(id);
+        var user = await _service.GetUser(id);
         return (user == null) ? NotFound() : Ok(user);
     }
 }

@@ -4,8 +4,8 @@ namespace PanAmNursery.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User?> GetByIdAsync(int id);
-        Task AddAsync(User user);
-        Task SaveChangesAsync();
+        Task<User?> GetById(int id);
+        Task Add(User user);
+        Task SaveChanges();
     }
 }
