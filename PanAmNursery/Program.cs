@@ -6,6 +6,12 @@ using PanAmNursery.Services;
 using PanAmNursery.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Configuration
+       .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+       .AddJsonFile("appsettings.Development.json", optional: true, reloadOnChange: true)
+       .AddEnvironmentVariables();
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 Console.WriteLine($"[DEBUG] Connection string found? {connectionString != null}");
 // Add services to the container.
